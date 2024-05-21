@@ -38,5 +38,7 @@
 - Feature importance analysis is conducted to understand which variables most significantly impact the `current_value` of players.
 - Visualizations like bar charts are used to display the importance of features.
 ## **My insights**
-the model isn't great needs more revisions, if there was league name column that will help a lot since every football league bay different prices for players due to league competition.
+- the model isn't great needs more revisions, if there was league name column that will help a lot since every football league bay different prices for players due to league competition.
 in my next try I will try feature engineer to add the column and create another model and compare it. 
+
+- My colleagues suggested that to separate the model into multiple models where each one of them will have different players based on their position, since the goalkeeper doesn't score that much goals which is normal, but his price shouldn't be affected by it.
