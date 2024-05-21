@@ -34,27 +34,29 @@ This project aims to develop a predictive model to estimate the transfer values 
   - Manchester City: 425,875.3
 
 ## Data
-The dataset includes player demographics (age, height, playing position) and performance metrics (goals, assists, injury history) for the seasons 2021-2022 and 2022-2023.
+The dataset includes player demographics (age, height, playing position) and performance metrics (goals, assists, injury history).
 
 ## Data Preprocessing
-- **Handling Missing Values**: Missing values were filled using appropriate strategies (e.g., mean for numerical features, mode for categorical features).
 - **Outlier Removal**: Outliers were removed using the Interquartile Range (IQR) method.
 - **Feature Engineering**: Features were standardized and encoded as needed.
 
 ## Model Training and Evaluation
 - The models were trained using the linear regression algorithm.
-- Model performance was evaluated using metrics such as R2 score, RMSE, and Mean Absolute Error (MAE).
-- Hyperparameter tuning was performed using GridSearchCV to optimize model performance.
+- Model performance was evaluated using metrics such as R2 score, RMSE, and Mean Absolute Error (MAE) and (MSE).
 
 ## Results
 
 ### Model 1:
 - **R2 Score**: 0.7691
 - **RMSE**: 4,649,973.54
+- **MAE for training**: 2159159.318035871
+- **MAE for testing**: 2241961.3359020734
 
 ### Model 2:
 - **R2 Score**: 0.7384
 - **RMSE**: 4,949,877.29
+- **MAE for training**: 2087335.8259447764
+- **MAE for testing**: 2185156.153246587
 
 ## Conclusion
 Model 1 provides a more detailed analysis with a higher R2 score and lower RMSE, while Model 2 simplifies the analysis by focusing on significant features. Depending on the priority of either interpretability and simplicity or detailed accuracy, one can choose between the two models. Future improvements could include incorporating additional features and exploring non-linear models.
