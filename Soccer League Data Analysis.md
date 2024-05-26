@@ -1,67 +1,75 @@
-# Soccer League Data Analysis
+# Player Value Prediction
 
-## Overview
+This repository contains code and data for predicting the value of football players based on various features. The project involves data exploration, preprocessing, and building multiple machine learning models to predict player values for different positions.
 
-This project aims to analyze soccer league data from various continents, including Europe, America, Africa, and Asia. We perform exploratory data analysis (EDA) and build machine learning models to predict target variables using linear regression, logistic regression, and decision tree techniques.
+## Table of Contents
 
-## Dataset
+- [Introduction](#introduction)
+- [Data](#data)
+- [Notebooks](#notebooks)
+- [Model Building Process](#model-building-process)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Results](#results)
+- [Contributing](#contributing)
+- [License](#license)
 
-The dataset contains information about soccer leagues from different continents. The key features include:
+## Introduction
 
-- **continent**: The continent where the league is located (e.g., Europe, America, Africa, Asia).
-- **various features**: Different attributes related to the soccer league (e.g., team statistics, match outcomes).
-- **target**: The target variable we aim to predict (e.g., team performance, match results).
+This project aims to predict the value of football players based on their attributes. Different factors affect the value of players in various positions, and filtering the data does not affect the correlation between the columns. Therefore, we build separate models for different positions to achieve higher accuracy.
 
-## Files
+## Data
 
-- `EDA_explain_template.ipynb`: The Jupyter Notebook containing the code for exploratory data analysis.
-- `logistic_regression.ipynb`: The Jupyter Notebook containing the code for logistic regression model building and evaluation.
-- `decision_tree.ipynb`: The Jupyter Notebook containing the code for decision tree model building and evaluation.
-- `final_data.csv`: The dataset used for the analysis.
+The dataset used in this project is provided in `final_data.csv`. It contains various features relevant to player valuation, such as:
+
+- Player Name
+- Age
+- Nationality
+- Overall Rating
+- Potential Rating
+- Club
+- Value
+- Wage
+- International Reputation
+- Skill Moves
+- Position
+- Other performance-related metrics
+
+## Notebooks
+
+The repository includes several Jupyter Notebooks for different stages of the project:
+
+- **EDA explain template.ipynb**: Exploratory Data Analysis and initial data preprocessing.
+- **svm.ipynb**: Support Vector Machine model building and evaluation.
+- **logistic_regression.ipynb**: Logistic Regression model building and evaluation.
+- **KNN-modle.ipynb**: K-Nearest Neighbors model building and evaluation.
+- **decision_tree.ipynb**: Decision Tree model building and evaluation.
+
+## Model Building Process
+
+### 1. Exploratory Data Analysis (EDA)
+In the `EDA explain template.ipynb` notebook, we explore the dataset to understand the distribution of various features, check for missing values, and identify outliers. We also visualize the data to gain insights into how different features correlate with the player's value.
+
+### 2. Data Preprocessing
+We preprocess the data by handling missing values, encoding categorical variables, and normalizing numerical features. We also filter outliers to improve the model's performance.
+
+### 3. Feature Engineering
+We engineer new features that might help improve the model's accuracy. These features are derived from existing ones and provide additional information about the players.
+
+### 4. Model Training and Evaluation
+We train different machine learning models on the preprocessed data for each player position (Goalkeepers, Defenders, Midfielders, Forwards). The models include:
+- Support Vector Machine (SVM)
+- Logistic Regression
+- K-Nearest Neighbors (KNN)
+- Decision Tree
+
+We evaluate each model's performance using metrics such as accuracy, precision, recall, F1-score, and Root Mean Squared Error (RMSE).
 
 ## Installation
 
-To run the notebooks and replicate the analysis, you need to have Python and the following libraries installed:
+To get started with this project, clone the repository and install the necessary dependencies:
 
-
-## Usage
-
-1. Clone the repository and navigate to the project directory.
-2. Place the `final_data.csv` file in the same directory as the notebooks.
-3. Open the Jupyter Notebooks.
-4. Follow the steps in the notebooks to load the data, perform exploratory data analysis, and build the machine learning models.
-
-## Analysis and Modeling
-
-### Exploratory Data Analysis (EDA)
-
-In the EDA section, we:
-
-- Load and inspect the dataset.
-- Check for null values and handle missing data.
-- Visualize the distribution of key features.
-- Identify and analyze outliers.
-
-### Model Building
-
-We build and evaluate several machine learning models using different techniques. The models include:
-
-- **Linear Regression**
-- **Logistic Regression**
-- **Decision Tree**
-
-#### Creating Models for Different Player Positions
-
-We create separate models for each player position (goalkeepers, defenders, midfielders, forwards) to predict the target variable.
-
-## Results
-
-The results of the models are evaluated based on various metrics such as accuracy, precision, recall, and F1-score. The best parameters and scores for each model are printed and analyzed.
-
-## Contributing
-
-If you would like to contribute to this project, please fork the repository and submit a pull request. We welcome all improvements and suggestions.
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+```bash
+git clone https://github.com/yourusername/player-value-prediction.git
+cd player-value-prediction
+pip install -r requirements.txt
