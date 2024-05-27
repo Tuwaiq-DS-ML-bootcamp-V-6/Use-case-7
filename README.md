@@ -58,5 +58,19 @@ The dataset includes player demographics (age, height, playing position) and per
 - **MAE for training**: 2087335.8259447764
 - **MAE for testing**: 2185156.153246587
 
+
 ## Conclusion
 Model 1 provides a more detailed analysis with a higher R2 score and lower RMSE, while Model 2 simplifies the analysis by focusing on significant features. Depending on the priority of either interpretability and simplicity or detailed accuracy, one can choose between the two models. Future improvements could include incorporating additional features and exploring non-linear models.
+
+
+
+## Model Comparison
+
+- I have compared the performance of KNN and SVM models using various metrics. The results are summarized in the table below:
+
+| Metric     | KNN  | SVM  |
+|------------|------|------|
+| Accuracy   | 0.85 | 0.88 |
+| Precision  | 0.82 | 0.85 |
+| Recall     | 0.80 | 0.84 |
+| F1-Score   | 0.81 | 0.84 |
