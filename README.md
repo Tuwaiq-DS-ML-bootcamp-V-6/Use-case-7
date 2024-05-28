@@ -65,11 +65,3 @@ We train different machine learning models on the preprocessed data for each pla
 
 We evaluate each model's performance using metrics such as accuracy, precision, recall, F1-score, and Root Mean Squared Error (RMSE).
 
-## Installation
-
-To get started with this project, clone the repository and install the necessary dependencies:
-
-```bash
-git clone https://github.com/yourusername/player-value-prediction.git
-cd player-value-prediction
-pip install -r requirements.txt
