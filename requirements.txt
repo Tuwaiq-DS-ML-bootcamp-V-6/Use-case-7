@@ -3,3 +3,7 @@ uvicorn
 joblib
 pydantic
 scikit-learn
+pandas
+plotly.express
+matplotlib
+seaborn

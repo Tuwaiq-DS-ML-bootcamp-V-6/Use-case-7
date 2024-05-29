@@ -40,7 +40,7 @@ games_injured = st.slider("games_injured",0, 70, 30)
 inputs = {"appearance":appearance, "minutes_played":minutes_played, "games_injured":games_injured, "award":award, "highest_value":highest_value, "goals":goals, "assists":assists, "yellow_cards":yellow_cards}
 
 if st.button('Predict'):
-    res = requests.post(url = "http://127.0.0.1:8000/predict" , data = json.dumps(inputs),headers={"Content-Type": "application/json"})
+    res = requests.post(url = "https://use-case-7-bh6d.onrender.com/predict" , data = json.dumps(inputs),headers={"Content-Type": "application/json"})
 
     if res.status_code == 200:
         result = res.json()
