@@ -9,13 +9,15 @@ appearance = st.sidebar.slider("Appearance", 0, 96, 10)
 minutes_played = st.sidebar.slider("Minutes Played", 0, 8581, 500)
 highest_value = st.sidebar.slider("highest_value", 0, 180000, 500)
 award = st.sidebar.slider('Award', 0, 92, 1)
+kmeans=st.sidebar.slider('kmeans', 0, 0, 1)
 
 # Converting the inputs into a JSON format
 inputs = {
     "appearance": appearance,
     "minutes_played": minutes_played,
     "highest_value": highest_value,
-    "award": award
+    "award": award,
+    'kmeans': kmeans
 }
 
 # When the user clicks on the button, it will fetch the API
@@ -28,7 +30,7 @@ if st.button('Get Prediction'):
         )
         res.raise_for_status()  # Check for HTTP request errors
         prediction_result = res.json()
-        st.subheader(f"Prediction result 🚀 = {prediction_result}")
+        st.subheader(f"Prediction result 🚀 = {prediction_result.get('pred')}")
 
     except requests.exceptions.RequestException as e:
         st.error(f"HTTP Request failed: {e}")
