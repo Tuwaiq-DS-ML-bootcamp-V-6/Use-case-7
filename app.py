@@ -7,8 +7,6 @@ import plotly.graph_objects as go
 import json
 import requests
 
-
-df = pd.read_csv("Data\Final_data2.csv")
 Cdf = pd.read_csv("Data\clustered.csv")
 
 #title and Introduction
