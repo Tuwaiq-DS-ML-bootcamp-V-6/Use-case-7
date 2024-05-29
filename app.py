@@ -32,12 +32,12 @@ inputs = {
 if st.button('Get Prediction'):
     try:
         res = requests.post(
-            url="http://127.0.0.1:8000/predict",
+            url="https://football-player-price-predict.onrender.com/predict",
             headers={"Content-Type": "application/json"},
             data=json.dumps(inputs)
         )
         res.raise_for_status() 
-        st.subheader(f"Prediction result :rocket: = {res.json()}")
+        st.write(f" cluster name as {res.json().get('pred')}")
 
     except requests.exceptions.RequestException as e:
         st.error(f"HTTP Request failed: {e}")
