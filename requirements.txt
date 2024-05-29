@@ -2,3 +2,6 @@ pandas
 plotly.express
 matplotlib
 seaborn
+fastapi
+joblib
+pydantic
