@@ -5,4 +5,3 @@ fastapi
 scikit-learn
 streamlit
 requests
-json
