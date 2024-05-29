@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 import json
 import requests
 
-Cdf = pd.read_csv("Data\clustered.csv")
+Cdf = pd.read_csv("Data/clustered.csv")
 
 #title and Introduction
 st.title('Discover more about the favorite worldwide sport "Football".')
