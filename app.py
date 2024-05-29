@@ -6,7 +6,7 @@ import plotly.express as px
 
 st.title("Player Value Prediction App ⚽")
 
-df = pd.read_csv("https://raw.githubusercontent.com/Sulaiman-F-Alharbi/Use-case-7/blob/main/Data/Categorized_football.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/Sulaiman-F-Alharbi/Use-case-7/main/Data/Categorized_football.csv")
 # Assuming football_df is your DataFrame
 fig = px.scatter(
     df,
