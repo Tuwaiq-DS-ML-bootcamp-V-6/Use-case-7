@@ -1,8 +1,25 @@
 import streamlit as st
 import requests
 import json
+import pandas as pd
+import plotly.express as px
 
 st.title("Player Value Prediction App ⚽")
+
+df = pd.read_csv("Data\Categorized_football.csv")
+# Assuming football_df is your DataFrame
+fig = px.scatter(
+    df,
+    x='appearance',
+    y='current_value',
+    color='current_value_category',
+    title='Scatter Plot of Appearance vs Current Value',
+    labels={'appearance': 'Appearance', 'current_value': 'Current Value'}
+)
+
+st.plotly_chart(fig)
+
+
 leagues = [
         "Premier League and Championship", "EFL", "Bundesliga",
         "La liga","Serie A","Serie B",
