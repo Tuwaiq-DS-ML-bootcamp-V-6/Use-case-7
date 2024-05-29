@@ -11,7 +11,7 @@ app = FastAPI()
 
 @app.get("/")
 def root():
-    return "Welcome To Tuwaiqsss Academy"
+    return "Welcome To Tuwaiq Academy"
 
 items = {}
 
