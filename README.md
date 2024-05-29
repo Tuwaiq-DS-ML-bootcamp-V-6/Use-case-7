@@ -1,5 +1,6 @@
 # Use case 7 (Lab)
-
+## Streamlit
+- You can see the streamlit link for <a href="https://football-pred.streamlit.app/" target="_blank">HERE</a>
 ## **Data Overview**
 - The dataset contains various columns related to football players, including their names, teams, positions, physical attributes, performance statistics, and financial values.
 - Key columns include `player`, `team`, `position`, `height`, `age`, `appearance`, `goals`, `assists`, `yellow cards`, `red cards`, `minutes played`, `days_injured`, `current_value`, and `highest_value`.
