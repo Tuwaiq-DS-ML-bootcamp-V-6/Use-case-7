@@ -24,7 +24,7 @@ inputs = {
 if st.button('Get Prediction'):
     try:
         res = requests.post(
-            url="http://localhost:8000/predict",
+            url="https://learning-deploy-2z33.onrender.com/predict",
             headers={"Content-Type": "application/json"},
             data=json.dumps(inputs)
         )
