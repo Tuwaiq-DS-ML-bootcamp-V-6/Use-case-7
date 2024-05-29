@@ -37,7 +37,7 @@ if st.button('Get Prediction'):
             data=json.dumps(inputs)
         )
         res.raise_for_status() 
-        st.write(f" cluster name as {res.json().get('pred')}")
+        st.write(f"the player is in cluster  {res.json().get('pred')}")
 
     except requests.exceptions.RequestException as e:
         st.error(f"HTTP Request failed: {e}")
