@@ -49,7 +49,7 @@ inputs = {
 if st.button('Get Prediction'):
     try:
         res = requests.post(
-            url="http://127.0.0.1:8000/predict",
+            url="https://use-case-7-8gxt.onrender.com/predict",
             headers={"Content-Type": "application/json"},
             data=json.dumps(inputs)
         )

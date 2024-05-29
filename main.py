@@ -64,29 +64,3 @@ async def predict(input_features: InputFeatures):
     return {"pred": y_pred.tolist()[0]}
 
 
-# def preprocessing(input_features: InputFeatures):
-#     dict_f = {
-#         'height': input_features.height,
-#         'age': input_features.age,
-#         'position': input_features.position,
-#         'appearance': input_features.appearance,
-#         'goals': input_features.goals,
-#         'assists': input_features.assists,
-#         'minutes_played': input_features.minutes_played,
-#         'days_injured': input_features.days_injured,
-#         'games_injured': input_features.games_injured,
-#         'award': input_features.award,
-#         'highest_value': input_features.highest_value,
-
-#         'league_DStv': input_features.league == 'league_DStv',
-#         'league_K-League': input_features.league == 'league_K-League',
-#         'league_La liga': input_features.league == 'league_La liga',
-#         'league_Premier League and Championship': input_features.league == 'league_Premier League and Championship liga',
-#         'league_Serie A': input_features.league == 'league_Serie A',
-#     }
-#     # Convert dictionary values to a list in the correct order
-#     features_list = [dict_f[key] for key in sorted(dict_f)]
-#     # Scale the input features
-#     scaled_features = scaler.transform([list(dict_f.values())])
-#     return scaled_features
-
