@@ -74,7 +74,7 @@ if st.button("Predict"):
     }
 
     # Make a POST request to the FastAPI endpoint
-    response = requests.post("http://localhost:8000/predict", data=json.dumps(input_data), headers={"Content-Type": "application/json"})
+    response = requests.post("https://use-case-7-kf3q.onrender.com", data=json.dumps(input_data), headers={"Content-Type": "application/json"})
 
     # Display the prediction result
     if response.status_code == 200:
