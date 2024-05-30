@@ -39,7 +39,7 @@ inputs = {"height":height,
          }
 
 if st.button('Predict'):
-    res = requests.post(url = "https://back-end-proj.onrender.com/predict" , data = json.dumps(inputs),headers={"Content-Type": "application/json"})
+    res = requests.post("https://back-end-proj.onrender.com/predict", json=inputs, headers={"Content-Type": "application/json"})
 
     if res.status_code == 200:
         result = res.json()
