@@ -12,14 +12,6 @@ fig = px.scatter(X, x='height', y='goals', color='DBSCAN',
 # Display the plot in Streamlit
 st.plotly_chart(fig)
 
-"height": 200.2,
-"age": 24.0,
-"appearance": 3,
-"goals": 0.3,
-"assists": 1.1,
-"goals_conceded": 0.0,
-"highest_value": 1800000, "position_encoded": 2, "winger" : 0}
-
 
 height = st.height("height",150.0, 220.0, 160.0)
 age = st.slider("age",18.0, 40.0, 24.0 )
