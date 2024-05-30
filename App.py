@@ -13,26 +13,10 @@ statistics = {
     "current_value": {"mean": 3622971, "max": 180000000}
 }
 
-# Add description to the Streamlit app
-st.title("⚽ Player Value Prediction")
 
-st.markdown("""
-This application predicts the value of a football player based on various attributes such as age, appearance, minutes played, days injured, games injured, awards won, and current market value. 
-The model uses a K-Nearest Neighbors (KNN) algorithm to make predictions.
-The dataset used for training the model includes the following columns:
-- **Age**: The age of the player
-- **Appearance**: Number of appearances made by the player
-- **Minutes Played**: Total minutes played by the player
-- **Days Injured**: Total number of days the player was injured
-- **Games Injured**: Total number of games missed due to injury
-- **Award**: Number of awards won by the player
-- **Current Value**: Current market value of the player in dollars
-""")
+st.title(" KiRBY Predict Everything ")
 
-# Add a sidebar with dataset statistics
-st.sidebar.header("📊 General Information")
-for key, value in statistics.items():
-    st.sidebar.markdown(f"**{key.capitalize()}**\n- Mean: {value['mean']}\n- Max: {value['max']}")
+st.markdown(""" Try anything i should guess them all """)
 
 # Create columns for the input fields
 col1, col2 = st.columns(2)
@@ -74,7 +58,9 @@ if st.button("Predict"):
     }
 
     # Make a POST request to the FastAPI endpoint
-    response = requests.post("https://use-case-7-kf3q.onrender.com", data=json.dumps(input_data), headers={"Content-Type": "application/json"})
+    url = "https://use-case-7-kf3q.onrender.com/predict"
+    headers = {"Content-Type": "application/json"}
+    response = requests.post(url, data=json.dumps(input_data), headers=headers)
 
     # Display the prediction result
     if response.status_code == 200:
