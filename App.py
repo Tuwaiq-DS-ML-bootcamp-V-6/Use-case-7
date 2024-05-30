@@ -13,7 +13,7 @@ statistics = {
     "current_value": {"mean": 3622971, "max": 180000000}
 }
 
-
+st.image("pics/pngwing.com.png")
 st.title(" KiRBY Predict Everything ")
 
 st.markdown(""" Try anything i should guess them all """)
