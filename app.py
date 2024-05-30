@@ -18,18 +18,16 @@ input_data = {
     "kmeans": kmeans_cluster
 }
 
-# Button to trigger prediction
 if st.button('Predict Player Value'):
     try:
-        # Ensure the correct endpoint URL
+        # Sending a POST request to the prediction API
         response = requests.post(
-            url="https://use-case-7-hbl3.onrender.com/predict",  # Correct endpoint for POST
+            url="https://use-case-7-hbl3.onrender.com/docs",
             headers={"Content-Type": "application/json"},
             data=json.dumps(input_data)
         )
         response.raise_for_status()  # Raise HTTP errors if any
 
-        # Parsing the prediction result
         prediction = response.json().get('pred')
         st.subheader(f"Predicted Value: €{prediction}")
 
