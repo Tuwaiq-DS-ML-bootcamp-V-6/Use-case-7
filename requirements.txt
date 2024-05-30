@@ -1,8 +1,9 @@
-warnings; python_version>="3.0"
+fastapi
+uvicorn
+pydantic
+joblib
+streamlit
+requests
 pandas
 numpy
-matplotlib
-plotly
-seaborn
-dtale
 scikit-learn
