@@ -5,13 +5,14 @@ import json
 import requests
 
 X = pd.read_csv('Data/DBSCAN.csv')
-st.markdown('# Can we group players based on their height and goals that what we will see')
+st.markdown('# Can we group players based on their some information')
 fig = px.scatter(X, x='height', y='goals', color='DBSCAN',
                  title='Scatter plot of height vs. goals',
                  labels={'height': 'Height', 'goals': 'Goals'})
 
 # Display the plot in Streamlit
 st.plotly_chart(fig)
+st.write('apparently no. Try to plug some values to try the grouping model')
 
 
 height = st.slider("height",150.0, 220.0, 160.0)
