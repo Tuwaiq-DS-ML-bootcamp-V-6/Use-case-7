@@ -13,7 +13,7 @@ fig = px.scatter(X, x='height', y='goals', color='DBSCAN',
 st.plotly_chart(fig)
 
 
-height = st.height("height",150.0, 220.0, 160.0)
+height = st.slider("height",150.0, 220.0, 160.0)
 age = st.slider("age",18.0, 40.0, 24.0 )
 appearance = st.slider("appearance",0, 5, 2 )
 goals = st.slider("goals",0.0, 1.0, 0.3)
