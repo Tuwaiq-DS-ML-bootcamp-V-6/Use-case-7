@@ -1,46 +1,87 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 import joblib
 from pydantic import BaseModel
-import logging
+
+
+
+model = joblib.load('Models/model_7.joblib')
+scaler = joblib.load('Models/scaler.joblib')
+
 
 app = FastAPI()
 
-try:
-    model = joblib.load('Models/knn_model.joblib')
-    scaler = joblib.load('Models/scaler.joblib')
-except Exception as e:
-    logging.error(f"Error loading model or scaler: {e}")
-    raise
-
 @app.get("/")
-def home():
+def root():
     return "Welcome To Tuwaiq Academy"
 
-class PlayerFeatures(BaseModel):
+items = {}
+
+
+# GET request
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to Tuwaiq Academy"}
+
+
+# get request
+@app.get("/items")
+def create_item(item: str):
+    print(item)
+    items[item] = 0
+    return items
+
+
+@app.get("/update")
+def update_item(item: str, value: int):
+    if items.get(item, None) == None:
+        return "error: item not found"
+
+    items[item] = value
+    return items[item]
+
+
+@app.get("/all")
+def get_items_item():
+    return items
+
+
+
+# Define a Pydantic model for input data validation
+class InputFeatures(BaseModel):
+    age: float
     appearance: int
     minutes_played: int
-    highest_value: int
+    days_injured: int
+    games_injured: int
     award: int
-    kmeans: int
+    current_value: int
 
-def preprocess(features: PlayerFeatures):
-    feature_dict = {
-        'appearance': features.appearance,
-        'minutes_played': features.minutes_played,
-        'highest_value': features.highest_value,
-        'award': features.award,
-        'kmeans': features.kmeans
+def preprocessing(input_features: InputFeatures):
+    dict_f = {
+    'age': input_features.age,
+    'appearance': input_features.appearance,
+    'minutes_played': input_features.minutes_played,
+    'days_injured': input_features.days_injured,
+    'games_injured': input_features.games_injured,
+    'award': input_features.award,
+    'current_value': input_features.current_value,
+
     }
-    scaled_data = scaler.transform([list(feature_dict.values())])
-    return scaled_data
+
+
+    # Convert dictionary values to a list in the correct order
+    # features_list = [dict_f[key] for key in sorted(dict_f)]
+    # Scale the input features
+    scaled_features = scaler.transform([list(dict_f.values())])
+
+    return scaled_features
+
+def predict(input_features: InputFeatures):
+    data = preprocessing(input_features)
 
 @app.post("/predict")
-async def predict(features: PlayerFeatures):
-    try:
-        processed_data = preprocess(features)
 
-        prediction = model.predict(processed_data)
-        return {"pred": prediction[0]}
-    except Exception as e:
-        logging.error(f"Error during prediction: {e}")
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+async def predict(input_features: InputFeatures):
+    data = preprocessing(input_features)
+    y_pred = model.predict(data)
+    return {"pred": y_pred.tolist()[0]}
