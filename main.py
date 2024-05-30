@@ -44,12 +44,12 @@ def preprocess(features: PlayerFeatures):
         'age': features.age,
         'goals': features.goals,
         'assists': features.assists,
-        'yellow_cards': features.yellow_cards,
-        'second_yellow_cards': features.second_yellow_cards,\
-        'red_cards': features.red_cards,
-        'goals_conceded': features.goals_conceded,
-        'clean_sheets': features.clean_sheets,
-        'minutes_played': features.minutes_played,
+        'yellow cards': features.yellow_cards,
+        'second yellow_cards': features.second_yellow_cards,\
+        'red cards': features.red_cards,
+        'goals conceded': features.goals_conceded,
+        'clean sheets': features.clean_sheets,
+        'minutes played': features.minutes_played,
         'days_injured': features.days_injured,
         'games_injured': features.games_injured,
         'award': features.award,
