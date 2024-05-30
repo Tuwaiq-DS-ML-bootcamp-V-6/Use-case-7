@@ -45,7 +45,7 @@ def preprocess(features: PlayerFeatures):
         'goals': features.goals,
         'assists': features.assists,
         'yellow cards': features.yellow_cards,
-        'second yellow_cards': features.second_yellow_cards,\
+        'second yellow_cards': features.second_yellow_cards,
         'red cards': features.red_cards,
         'goals conceded': features.goals_conceded,
         'clean sheets': features.clean_sheets,
