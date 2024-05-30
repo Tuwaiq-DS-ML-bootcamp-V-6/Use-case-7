@@ -1,0 +1,21 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label=<team_Cerezo Osaka &le; 0.5<br/>gini = 0.656<br/>samples = 182<br/>value = [110, 72, 109]>, fillcolor="#fffefe"] ;
+1 [label=<appearance &le; 69.5<br/>gini = 0.656<br/>samples = 178<br/>value = [110, 72, 104]>, fillcolor="#fefbf8"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label=<days_injured &le; 1.0<br/>gini = 0.629<br/>samples = 158<br/>value = [107, 45, 104]>, fillcolor="#fefdfb"] ;
+1 -> 2 ;
+3 [label=<gini = 0.596<br/>samples = 97<br/>value = [48, 26, 85]>, fillcolor="#d5bdf6"] ;
+2 -> 3 ;
+4 [label=<gini = 0.553<br/>samples = 61<br/>value = [59.0, 19.0, 19.0]>, fillcolor="#f2be99"] ;
+2 -> 4 ;
+5 [label=<appearance &le; 84.5<br/>gini = 0.18<br/>samples = 20<br/>value = [3, 27, 0]>, fillcolor="#4fe88f"] ;
+1 -> 5 ;
+6 [label=<gini = 0.255<br/>samples = 13<br/>value = [3, 17, 0]>, fillcolor="#5cea97"] ;
+5 -> 6 ;
+7 [label=<gini = 0.0<br/>samples = 7<br/>value = [0, 10, 0]>, fillcolor="#39e581"] ;
+5 -> 7 ;
+8 [label=<gini = 0.0<br/>samples = 4<br/>value = [0, 0, 5]>, fillcolor="#8139e5"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}
