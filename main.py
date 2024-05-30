@@ -15,21 +15,47 @@ except Exception as e:
 @app.get("/")
 def home():
     return "Welcome To Tuwaiq Academy"
-
+# height	age	appearance	goals	assists	yellow cards	second yellow cards	red cards	goals conceded	clean sheets
+# 	minutes played	days_injured	games_injured	award	highest_value	position_encoded	winger
 class PlayerFeatures(BaseModel):
     appearance: int
-    minutes_played: int
     highest_value: int
+    height: int
+    age: int
+    goals: float
+    assists: int
+    yellow_cards: int
+    second_yellow_cards: int
+    red_cards: int
+    goals_conceded: float
+    clean_sheets: float
+    minutes_played: float
+    days_injured: int
+    games_injured: int
     award: int
-    kmeans: int
+    position_encoded: int
+    winger: int
 
 def preprocess(features: PlayerFeatures):
     feature_dict = {
         'appearance': features.appearance,
-        'minutes_played': features.minutes_played,
         'highest_value': features.highest_value,
+        'height': features.height,
+        'age': features.age,
+        'goals': features.goals,
+        'assists': features.assists,
+        'yellow_cards': features.yellow_cards,
+        'second_yellow_cards': features.second_yellow_cards,\
+        'red_cards': features.red_cards,
+        'goals_conceded': features.goals_conceded,
+        'clean_sheets': features.clean_sheets,
+        'minutes_played': features.minutes_played,
+        'days_injured': features.days_injured,
+        'games_injured': features.games_injured,
         'award': features.award,
-        'kmeans': features.kmeans
+        'position_encoded': features.position_encoded,
+        'winger': features.winger,
+        
     }
     scaled_data = scaler.transform([list(feature_dict.values())])
     return scaled_data
