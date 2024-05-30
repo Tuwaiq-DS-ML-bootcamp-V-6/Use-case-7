@@ -2,17 +2,14 @@ import streamlit as st
 import requests
 import json
 
-# Title of the application
 st.title("Prediction for Players Value")
 
-# Sidebar for user inputs
 appearance = st.sidebar.slider("Number of Appearances", 0, 96, 10)
 minutes_played = st.sidebar.slider("Minutes Played", 0, 8581, 500)
 highest_value = st.sidebar.slider("Highest Value (€)", 0, 180000, 500)
 award = st.sidebar.slider("Number of Awards", 0, 92, 1)
 kmeans_cluster = st.sidebar.slider("KMeans Cluster", 0, 0, 1)
 
-# Preparing input data in JSON format
 input_data = {
     "appearance": appearance,
     "minutes_played": minutes_played,

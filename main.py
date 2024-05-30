@@ -3,18 +3,18 @@ import joblib
 from pydantic import BaseModel
 import logging
 
-# Initialize the FastAPI app
 app = FastAPI()
 
-# Load the model and scaler
+logging.basicConfig(level=logging.INFO)
+
 try:
     model = joblib.load('Models/knn_model.joblib')
     scaler = joblib.load('Models/scaler.joblib')
+    logging.info("Model and scaler loaded successfully.")
 except Exception as e:
     logging.error(f"Error loading model or scaler: {e}")
     raise
 
-# Root endpoint
 @app.get("/")
 def home():
     return "Welcome To Tuwaiq Academy"
@@ -29,15 +29,19 @@ class PlayerFeatures(BaseModel):
 
 # Preprocessing function
 def preprocess(features: PlayerFeatures):
-    feature_dict = {
-        'appearance': features.appearance,
-        'minutes_played': features.minutes_played,
-        'highest_value': features.highest_value,
-        'award': features.award,
-        'kmeans': features.kmeans
-    }
-    scaled_data = scaler.transform([list(feature_dict.values())])
-    return scaled_data
+    try:
+        feature_dict = {
+            'appearance': features.appearance,
+            'minutes_played': features.minutes_played,
+            'highest_value': features.highest_value,
+            'award': features.award,
+            'kmeans': features.kmeans
+        }
+        scaled_data = scaler.transform([list(feature_dict.values())])
+        return scaled_data
+    except Exception as e:
+        logging.error(f"Error during preprocessing: {e}")
+        raise HTTPException(status_code=400, detail="Error in preprocessing input data")
 
 # Prediction endpoint
 @app.post("/predict")
