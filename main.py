@@ -1,87 +1,37 @@
-from fastapi import FastAPI
-import joblib
-from pydantic import BaseModel
+import streamlit as st
+import requests
+import json
 
+st.title("Prediction for Players Value")
 
+appearance = st.sidebar.slider("Number of Appearances", 0, 96, 10)
+minutes_played = st.sidebar.slider("Minutes Played", 0, 8581, 500)
+highest_value = st.sidebar.slider("Highest Value (€)", 0, 180000, 500)
+award = st.sidebar.slider("Number of Awards", 0, 92, 1)
+kmeans_cluster = st.sidebar.slider("KMeans Cluster", 0, 0, 1)
 
-model = joblib.load('Models/model_7.joblib')
-scaler = joblib.load('Models/scaler.joblib')
+input_data = {
+    "appearance": appearance,
+    "minutes_played": minutes_played,
+    "highest_value": highest_value,
+    "award": award,
+    "kmeans": kmeans_cluster
+}
 
+if st.button('Predict Player Value'):
+    try:
+        # Sending a POST request to the prediction API
+        response = requests.post(
+            url="https://use-case-7-18ry.onrender.com",  # Ensure this URL matches your FastAPI endpoint
+            headers={"Content-Type": "application/json"},
+            data=json.dumps(input_data)
+        )
+        response.raise_for_status()  # Raise HTTP errors if any
 
-app = FastAPI()
+        prediction = response.json().get('pred')
+        st.subheader(f"Predicted Value: €{prediction}")
 
-@app.get("/")
-def root():
-    return "Welcome To Tuwaiq Academy"
-
-items = {}
-
-
-# GET request
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to Tuwaiq Academy"}
-
-
-# get request
-@app.get("/items")
-def create_item(item: str):
-    print(item)
-    items[item] = 0
-    return items
-
-
-@app.get("/update")
-def update_item(item: str, value: int):
-    if items.get(item, None) == None:
-        return "error: item not found"
-
-    items[item] = value
-    return items[item]
-
-
-@app.get("/all")
-def get_items_item():
-    return items
-
-
-
-# Define a Pydantic model for input data validation
-class InputFeatures(BaseModel):
-    age: float
-    appearance: int
-    minutes_played: int
-    days_injured: int
-    games_injured: int
-    award: int
-    current_value: int
-
-def preprocessing(input_features: InputFeatures):
-    dict_f = {
-    'age': input_features.age,
-    'appearance': input_features.appearance,
-    'minutes_played': input_features.minutes_played,
-    'days_injured': input_features.days_injured,
-    'games_injured': input_features.games_injured,
-    'award': input_features.award,
-    'current_value': input_features.current_value,
-
-    }
-
-
-    # Convert dictionary values to a list in the correct order
-    # features_list = [dict_f[key] for key in sorted(dict_f)]
-    # Scale the input features
-    scaled_features = scaler.transform([list(dict_f.values())])
-
-    return scaled_features
-
-def predict(input_features: InputFeatures):
-    data = preprocessing(input_features)
-
-@app.post("/predict")
-
-async def predict(input_features: InputFeatures):
-    data = preprocessing(input_features)
-    y_pred = model.predict(data)
-    return {"pred": y_pred.tolist()[0]}
+    except requests.exceptions.RequestException as http_error:
+        st.error(f"HTTP Request Error: {http_error}")
+    except ValueError as json_error:
+        st.error(f"JSON Parsing Error: {json_error}")
