@@ -1,0 +1,8 @@
+warnings; python_version>="3.0"
+pandas
+numpy
+matplotlib
+plotly
+seaborn
+dtale
+scikit-learn
