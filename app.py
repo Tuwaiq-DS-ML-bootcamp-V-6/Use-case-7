@@ -50,7 +50,7 @@ if st.button('Get Prediction'):
      try:
        
         res = requests.post(
-           url="https://use-case7api.onrender.com/predict",
+           url="https://use-case-7-rngj.onrender.com/predict",
            
             headers={"Content-Type": "application/json"},
             data=json.dumps(input_features)
