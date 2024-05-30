@@ -3,7 +3,7 @@ import pandas as pd
 from modules import ModelService as md
 
 # instantiate the model service
-model_service: md.ModelService = md.ModelService("http://127.0.0.1:8000/predict")
+model_service: md.ModelService = md.ModelService("https://use-case-7-0dl2.onrender.com/predict")
 
 # list to save results
 # pred_list: pd.DataFrame = pd.DataFrame({"Player": [], "Current Value Prediction": []})
