@@ -5,6 +5,7 @@ import json
 import requests
 
 X = pd.read_csv('Data/DBSCAN.csv')
+st.markdown('# Can we group players based on their height and goals that what we will see')
 fig = px.scatter(X, x='height', y='goals', color='DBSCAN',
                  title='Scatter plot of height vs. goals',
                  labels={'height': 'Height', 'goals': 'Goals'})
@@ -41,6 +42,6 @@ if st.button('Predict'):
 
     if res.status_code == 200:
         result = res.json()
-        st.write(f"Cluster {result['pred']}")
+        st.write(f"Based on these information it is in cluster {result['pred']}")
     else:
         st.write("Try Again")
