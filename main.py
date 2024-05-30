@@ -1,37 +1,46 @@
-import streamlit as st
-import requests
-import json
+from fastapi import FastAPI, HTTPException
+import joblib
+from pydantic import BaseModel
+import logging
 
-st.title("Prediction for Players Value")
+app = FastAPI()
 
-appearance = st.sidebar.slider("Number of Appearances", 0, 96, 10)
-minutes_played = st.sidebar.slider("Minutes Played", 0, 8581, 500)
-highest_value = st.sidebar.slider("Highest Value (€)", 0, 180000, 500)
-award = st.sidebar.slider("Number of Awards", 0, 92, 1)
-kmeans_cluster = st.sidebar.slider("KMeans Cluster", 0, 0, 1)
+try:
+    model = joblib.load('Models/knn_model.joblib')
+    scaler = joblib.load('Models/scaler.joblib')
+except Exception as e:
+    logging.error(f"Error loading model or scaler: {e}")
+    raise
 
-input_data = {
-    "appearance": appearance,
-    "minutes_played": minutes_played,
-    "highest_value": highest_value,
-    "award": award,
-    "kmeans": kmeans_cluster
-}
+@app.get("/")
+def home():
+    return "Welcome To Tuwaiq Academy"
 
-if st.button('Predict Player Value'):
+class PlayerFeatures(BaseModel):
+    appearance: int
+    minutes_played: int
+    highest_value: int
+    award: int
+    kmeans: int
+
+def preprocess(features: PlayerFeatures):
+    feature_dict = {
+        'appearance': features.appearance,
+        'minutes_played': features.minutes_played,
+        'highest_value': features.highest_value,
+        'award': features.award,
+        'kmeans': features.kmeans
+    }
+    scaled_data = scaler.transform([list(feature_dict.values())])
+    return scaled_data
+
+@app.post("/predict")
+async def predict(features: PlayerFeatures):
     try:
-        # Sending a POST request to the prediction API
-        response = requests.post(
-            url="https://use-case-7-18ry.onrender.com",  # Ensure this URL matches your FastAPI endpoint
-            headers={"Content-Type": "application/json"},
-            data=json.dumps(input_data)
-        )
-        response.raise_for_status()  # Raise HTTP errors if any
+        processed_data = preprocess(features)
 
-        prediction = response.json().get('pred')
-        st.subheader(f"Predicted Value: €{prediction}")
-
-    except requests.exceptions.RequestException as http_error:
-        st.error(f"HTTP Request Error: {http_error}")
-    except ValueError as json_error:
-        st.error(f"JSON Parsing Error: {json_error}")
+        prediction = model.predict(processed_data)
+        return {"pred": prediction[0]}
+    except Exception as e:
+        logging.error(f"Error during prediction: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
