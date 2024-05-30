@@ -18,20 +18,20 @@ def home():
 # height	age	appearance	goals	assists	yellow cards	second yellow cards	red cards	goals conceded	clean sheets
 # 	minutes played	days_injured	games_injured	award	highest_value	position_encoded	winger
 class PlayerFeatures(BaseModel):
-    appearance: int
-    highest_value: int
-    height: int
-    age: int
+    appearance: float
+    highest_value: float
+    height: float
+    age: float
     goals: float
-    assists: int
-    yellow_cards: int
-    second_yellow_cards: int
-    red_cards: int
+    assists: float
+    yellow_cards: float
+    second_yellow_cards: float
+    red_cards: float
     goals_conceded: float
     clean_sheets: float
     minutes_played: float
-    days_injured: int
-    games_injured: int
+    days_injured: float
+    games_injured: float
     award: int
     position_encoded: int
     winger: int
