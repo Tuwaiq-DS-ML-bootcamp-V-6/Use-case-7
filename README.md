@@ -1,5 +1,10 @@
 # Predicting Football Player Transfer Fees: Using A Data-Driven Approach
 
+## Deployment
+[Streamlit](https://reyadgh-7.streamlit.app/)
+
+[FastAPI](https://use-case-7-0dl2.onrender.com/)
+
 ## Overview
 
 This dataset is undertaken to create a predictive model for the transfer values of football players. We will utilize data from football players and construct a model to predict transfer fees based on that data. Player data includes basic information such as age, height, playing position, as well as professional statistics like goal scoring, assists (in 2 season 2021-2022 and 2022-2023), injuries, along with total individual and team awards in their career.
