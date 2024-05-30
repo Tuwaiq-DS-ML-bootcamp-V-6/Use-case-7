@@ -22,7 +22,7 @@ if st.button('Predict Player Value'):
     try:
         # Sending a POST request to the prediction API
         response = requests.post(
-            url="https://use-case-7-hbl3.onrender.com",
+            url="https://use-case-7-qy0f.onrender.com",
             headers={"Content-Type": "application/json"},
             data=json.dumps(input_data)
         )
