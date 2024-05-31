@@ -20,7 +20,7 @@ def print_structure(path: str, prefix: str = "") -> None:
     for i, item in enumerate(items):
         item_path = os.path.join(path, item)
         is_last = i == len(items) - 1
-        print(prefix + ("- " if is_last else "|- ") + item)
+        st.write(prefix + ("- " if is_last else "|- ") + item)
         if os.path.isdir(item_path):
             new_prefix = prefix + ("  " if is_last else "| ")
             print_structure(item_path, new_prefix)
@@ -28,7 +28,7 @@ def print_structure(path: str, prefix: str = "") -> None:
 
 # get current directory
 current_dir: str = os.getcwd()
-st.markdown(print_structure(current_dir))
+print_structure(current_dir)
 # df = pd.read_csv()
 
 
