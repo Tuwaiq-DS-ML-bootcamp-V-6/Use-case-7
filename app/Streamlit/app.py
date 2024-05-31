@@ -7,7 +7,7 @@ model_service: md.ModelService = md.ModelService(
     "https://use-case-7-0dl2.onrender.com/predict"
 )
 
-df = pd.read_csv("cleaned/clean.csv")
+df = pd.read_csv("../cleaned/clean.csv")
 
 
 def create_sidebar() -> dict:
