@@ -12,7 +12,7 @@ model_service: md.ModelService = md.ModelService(
 
 df: pd.DataFrame = pd.read_csv("cleaned/clean_data.csv")
 
-st.write(df)
+st.write(df.columns)
 
 # select the specified columns
 selected_columns = [
