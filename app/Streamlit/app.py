@@ -28,7 +28,7 @@ def print_structure(path: str, prefix: str = "") -> None:
 
 # get current directory
 current_dir: str = os.getcwd()
-st.write(print_structure(current_dir))
+st.markdown(print_structure(current_dir))
 # df = pd.read_csv()
 
 
