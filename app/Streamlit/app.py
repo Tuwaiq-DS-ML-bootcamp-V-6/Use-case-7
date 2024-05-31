@@ -83,16 +83,6 @@ st.markdown("""
             Please use the Sidebar to predict the player current value.
             """)
 
-st.markdown("---")
-
-st.title("Data Distribution 🐧")
-st.write(px.scatter_3d(pca_df.head(500), x="PCA1", y="PCA2", z="PCA3", color="kmeans"))
-st.markdown("""
-            I hope you like like the PCA
-            
-            *best regards*
-            
-            """)
 
 input_data = create_sidebar()
 
@@ -109,3 +99,14 @@ if st.sidebar.button("Predict"):
             st.write(f"Resualt is {prediction[0]}")
         else:
             st.error(result["error"])
+
+st.markdown("---")
+
+st.title("Data Distribution 🐧")
+st.write(px.scatter_3d(pca_df.head(500), x="PCA1", y="PCA2", z="PCA3", color="kmeans"))
+st.markdown("""
+            I hope you like like the PCA
+            
+            *best regards*
+            
+            """)
