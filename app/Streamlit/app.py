@@ -11,6 +11,7 @@ model_service: md.ModelService = md.ModelService(
 
 
 df = pd.read_csv("cleaned/clean_data.csv")
+st.write(df)
 X = df[
     [
         "height",
