@@ -29,7 +29,7 @@ def print_structure(path: str, prefix: str = "") -> None:
 # get current directory
 current_dir: str = os.getcwd()
 print_structure(current_dir)
-# df = pd.read_csv()
+df = pd.read_csv("cleaned/clean_data.csv")
 
 
 def create_sidebar() -> dict:
