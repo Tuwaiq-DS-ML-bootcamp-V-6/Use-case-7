@@ -12,19 +12,21 @@ model_service: md.ModelService = md.ModelService(
 
 df = pd.read_csv("cleaned/clean_data.csv")
 X = df[
-    "height",
-    "age",
-    "appearance",
-    "goals",
-    "assists",
-    "yellow cards",
-    "goals conceded",
-    "clean sheets",
-    "minutes played",
-    "current_value",
-    "highest_value",
-    "position_encoded",
-    "winger",
+    [
+        "height",
+        "age",
+        "appearance",
+        "goals",
+        "assists",
+        "yellow cards",
+        "goals conceded",
+        "clean sheets",
+        "minutes played",
+        "current_value",
+        "highest_value",
+        "position_encoded",
+        "winger",
+    ]
 ]
 
 kvalues = X["kmeans"]
