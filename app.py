@@ -2,7 +2,6 @@ import streamlit as st
 import requests
 import json
 
-st.image("image.png")
 st.title('Players Values Prediction ')
 #st.write('')
 #url ="https://use-case-7-1-i2b4.onrender.com/"
