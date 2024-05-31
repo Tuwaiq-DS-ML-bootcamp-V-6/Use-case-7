@@ -91,7 +91,7 @@ def create_sidebar() -> dict:
     return input_data
 
 
-# st.write(df)
+st.write(df)
 st.title("Football Player Prediction")
 st.markdown("""
             Please use the Sidebar to predict the player current value.
