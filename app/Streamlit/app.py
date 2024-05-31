@@ -12,14 +12,12 @@ model_service: md.ModelService = md.ModelService(
 
 df: pd.DataFrame = pd.read_csv("cleaned/model_data.csv")
 
-st.write(df)
-
 
 kvalues = df["kmeans"]
 pca_components = PCA(3).fit_transform(df.drop("kmeans", axis=1))
 pca_df = pd.DataFrame(data={f"PCA{i+1}": c for i, c in enumerate(pca_components.T)})
 pca_df["kmeans"] = kvalues
-px.scatter_3d(pca_df.head(500), x="PCA1", y="PCA2", z="PCA3", color="kmeans")
+st.write(px.scatter_3d(pca_df.head(500), x="PCA1", y="PCA2", z="PCA3", color="kmeans"))
 
 
 def create_sidebar() -> dict:
