@@ -7,8 +7,7 @@ model_service: md.ModelService = md.ModelService(
     "https://use-case-7-0dl2.onrender.com/predict"
 )
 
-# list to save results
-# pred_list: pd.DataFrame = pd.DataFrame({"Player": [], "Current Value Prediction": []})
+df = pd.read_csv("cleaned/clean.csv")
 
 
 def create_sidebar() -> dict:
