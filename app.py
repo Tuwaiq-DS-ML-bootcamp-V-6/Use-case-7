@@ -36,9 +36,3 @@ if st.button("Predict"):
         st.write(f"Predicted Category: {prediction['pred']}")
     except requests.exceptions.RequestException as e:
         st.error(f"Error: Unable to get a prediction. {e}")
-
-# View clustering results (from preloaded dataset)
-st.header("View Clustering Results")
-if st.button("Cluster Data"):
-    st.write("Displaying clustering results...")
-    st.write(data)
