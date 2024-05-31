@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 from modules import ModelService as md
-import os
+import plotly.express as px
+from sklearn.decomposition import PCA
 
 # instantiate the model service
 model_service: md.ModelService = md.ModelService(
@@ -9,27 +10,28 @@ model_service: md.ModelService = md.ModelService(
 )
 
 
-def print_structure(path: str, prefix: str = "") -> None:
-    """this function prints the structure of the given directory
-
-    Args:
-        path (str): path to the directory
-        prefix (str): prefix for nested files and folders
-    """
-    items = os.listdir(path)
-    for i, item in enumerate(items):
-        item_path = os.path.join(path, item)
-        is_last = i == len(items) - 1
-        st.write(prefix + ("- " if is_last else "|- ") + item)
-        if os.path.isdir(item_path):
-            new_prefix = prefix + ("  " if is_last else "| ")
-            print_structure(item_path, new_prefix)
-
-
-# get current directory
-current_dir: str = os.getcwd()
-print_structure(current_dir)
 df = pd.read_csv("cleaned/clean_data.csv")
+X = df[
+    "height",
+    "age",
+    "appearance",
+    "goals",
+    "assists",
+    "yellow cards",
+    "goals conceded",
+    "clean sheets",
+    "minutes played",
+    "current_value",
+    "highest_value",
+    "position_encoded",
+    "winger",
+]
+
+kvalues = X["kmeans"]
+pca_components = PCA(3).fit_transform(X.drop("kmeans", axis=1))
+pca_df = pd.DataFrame(data={f"PCA{i+1}": c for i, c in enumerate(pca_components.T)})
+pca_df["kmeans"] = kvalues
+px.scatter_3d(pca_df.head(500), x="PCA1", y="PCA2", z="PCA3", color="kmeans")
 
 
 def create_sidebar() -> dict:

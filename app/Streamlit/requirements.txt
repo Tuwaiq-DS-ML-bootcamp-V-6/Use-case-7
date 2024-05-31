@@ -2,3 +2,4 @@ pandas
 numpy
 joblib
 pydantic
+scikit-learn
