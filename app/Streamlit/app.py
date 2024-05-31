@@ -69,35 +69,7 @@ def create_sidebar() -> dict:
     return input_data
 
 
-# def reset_session() -> None:
-#     """
-#     Clear the Streamlit session state.
-#     """
-#     st.session_state.clear()
-
-
-# def page() -> str:
-#     """
-#     Create the main page content and return the player name.
-
-#     return: str
-#         The player's name provided by the user.
-#     """
-#     st.sidebar.header("Prediction Index")
-#     # player_name: str = st.sidebar.text_input(
-#     #     "Player Name", value=f"Player {len(pred_list)+1}"
-#     # )
-
-#     st.title("Football Player Prediction")
-#     st.markdown("""
-#                 Please use the Sidebar to predict the player current value.
-#                 """)
-#     # st.write(pred_list)
-#     # st.button("Reset Session", on_click=reset_session())
-
-#     return player_name
-
-
+st.write(df)
 st.title("Football Player Prediction")
 st.markdown("""
             Please use the Sidebar to predict the player current value.
