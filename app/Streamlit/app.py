@@ -1,13 +1,34 @@
 import streamlit as st
 import pandas as pd
 from modules import ModelService as md
+import os
 
 # instantiate the model service
 model_service: md.ModelService = md.ModelService(
     "https://use-case-7-0dl2.onrender.com/predict"
 )
 
-df = pd.read_csv("../cleaned/clean.csv")
+
+def print_structure(path: str, prefix: str = "") -> None:
+    """this function prints the structure of the given directory
+
+    Args:
+        path (str): path to the directory
+        prefix (str): prefix for nested files and folders
+    """
+    items = os.listdir(path)
+    for i, item in enumerate(items):
+        item_path = os.path.join(path, item)
+        is_last = i == len(items) - 1
+        print(prefix + ("- " if is_last else "|- ") + item)
+        if os.path.isdir(item_path):
+            new_prefix = prefix + ("  " if is_last else "| ")
+            print_structure(item_path, new_prefix)
+
+
+# get current directory
+current_dir: str = os.getcwd()
+print_structure(current_dir)
 
 
 def create_sidebar() -> dict:
@@ -69,7 +90,7 @@ def create_sidebar() -> dict:
     return input_data
 
 
-st.write(df)
+# st.write(df)
 st.title("Football Player Prediction")
 st.markdown("""
             Please use the Sidebar to predict the player current value.
