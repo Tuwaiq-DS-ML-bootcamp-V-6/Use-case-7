@@ -26,6 +26,7 @@ X = df[
         "highest_value",
         "position_encoded",
         "winger",
+        "kmeans",
     ]
 ]
 
