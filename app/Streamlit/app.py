@@ -17,7 +17,6 @@ kvalues = df["kmeans"]
 pca_components = PCA(3).fit_transform(df.drop("kmeans", axis=1))
 pca_df = pd.DataFrame(data={f"PCA{i+1}": c for i, c in enumerate(pca_components.T)})
 pca_df["kmeans"] = kvalues
-st.write(px.scatter_3d(pca_df.head(500), x="PCA1", y="PCA2", z="PCA3", color="kmeans"))
 
 
 def create_sidebar() -> dict:
@@ -79,11 +78,15 @@ def create_sidebar() -> dict:
     return input_data
 
 
-st.write(df)
 st.title("Football Player Prediction")
 st.markdown("""
             Please use the Sidebar to predict the player current value.
             """)
+
+st.markdown("---")
+
+st.title("Data Distribution")
+st.write(px.scatter_3d(pca_df.head(500), x="PCA1", y="PCA2", z="PCA3", color="kmeans"))
 
 input_data = create_sidebar()
 
