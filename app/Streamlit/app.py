@@ -10,29 +10,32 @@ model_service: md.ModelService = md.ModelService(
 )
 
 
-df = pd.read_csv("cleaned/clean_data.csv")
+df: pd.DataFrame = pd.read_csv("cleaned/clean_data.csv")
+
 st.write(df)
-X = df[
-    [
-        "height",
-        "age",
-        "appearance",
-        "goals",
-        "assists",
-        "yellow cards",
-        "goals conceded",
-        "clean sheets",
-        "minutes played",
-        "current_value",
-        "highest_value",
-        "position_encoded",
-        "winger",
-        "kmeans",
-    ]
+
+# select the specified columns
+selected_columns = [
+    "height",
+    "age",
+    "appearance",
+    "goals",
+    "assists",
+    "yellow cards",
+    "goals conceded",
+    "clean sheets",
+    "minutes played",
+    "current_value",
+    "highest_value",
+    "position_encoded",
+    "winger",
+    "kmeans",
 ]
 
-kvalues = X["kmeans"]
-pca_components = PCA(3).fit_transform(X.drop("kmeans", axis=1))
+selected_df: pd.DataFrame = df[selected_columns]
+
+kvalues = selected_df["kmeans"]
+pca_components = PCA(3).fit_transform(selected_df.drop("kmeans", axis=1))
 pca_df = pd.DataFrame(data={f"PCA{i+1}": c for i, c in enumerate(pca_components.T)})
 pca_df["kmeans"] = kvalues
 px.scatter_3d(pca_df.head(500), x="PCA1", y="PCA2", z="PCA3", color="kmeans")
