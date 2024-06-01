@@ -1,2 +1,2 @@
-# Use case 7 (Lab)
+# Player Price predictions
 
