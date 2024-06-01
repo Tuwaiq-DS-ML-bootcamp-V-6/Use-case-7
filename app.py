@@ -1,44 +1,65 @@
 import streamlit as st
-import pandas as pd
 import requests
-import matplotlib.pyplot as plt
+import json
+import pandas as pd
+import plotly.express as px
 
+st.title("⚽  Prediction of Player Value  ⚽")
 
-st.title("Football Players Categories Prediction")
+df = pd.read_csv("https://raw.githubusercontent.com/najla-alosime/LabAPI/main/Categorized_football.csv")
 
-
-feature1 = st.number_input("Feature 1")
-feature2 = st.number_input("Feature 2")
-feature3 = st.number_input("Feature 3")
-
-if st.button("Predict"):
-
-    payload = {
-        "feature1": feature1,
-        "feature2": feature2,
-        "feature3": feature3,
-        
-    }
-    response = requests.post("http://127.0.0.1:8000/predict", json=payload)
-    prediction = response.json()["category"]
-    st.write(f"The predicted category is: {prediction}")
-
-
-st.title("Clustering Results Visualization")
-uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
-
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
+# Assuming football_df is your DataFrame
+fig = px.scatter(
+    df,
+    x='appearance',
+    y='current_value',
+    color='current_value_category_encoded',
+    title=' Appearance vs Current Value',
+    labels={'appearance': 'Appearance', 'current_value': 'Current Value'}
     
-    if 'cluster' in df.columns:
-        clusters = df['cluster'].unique()
-        fig, ax = plt.subplots()
-        for cluster in clusters:
-            cluster_data = df[df['cluster'] == cluster]
-            ax.scatter(cluster_data['feature1'], cluster_data['feature2'], label=f'Cluster {cluster}')
-        ax.set_xlabel('Feature 1')
-        ax.set_ylabel('Feature 2')
-        ax.legend()
-        st.pyplot(fig)
-    else:
-        st.write("The CSV file does not contain a 'cluster' column.")
+)
+
+st.plotly_chart(fig)
+
+
+
+
+# Taking user inputs
+goals = st.number_input("Insert a goals", value=0, placeholder="Type a number...",min_value=0)
+highest_value = st.number_input("Insert a highest_value", value=0, placeholder="Type a number...",min_value=0)
+games_injured = st.number_input("Insert a games_injured", value=0, placeholder="Type a number...",min_value=0)
+minutes_played = st.slider("Minutes Played", 0, 10000, 500)
+appearance = st.slider("Appearance", 0, 300, 10)
+
+
+
+
+# Converting the inputs into a JSON format
+inputs = {
+    'appearance': appearance,
+    'goals': goals,
+    'minutes_played': minutes_played,
+    'games_injured': games_injured,
+    'highest_value': highest_value,
+
+
+    }
+
+# When the user clicks on the button, it will fetch the API
+if st.button('Get Prediction'):
+   # res=None
+    try:
+       
+        res = requests.post(
+            url="https://labapi-4dnd.onrender.com/predict",
+            headers={"Content-Type": "application/json"},
+            json=inputs
+        )
+        res.raise_for_status()  # Check for HTTP request errors
+        #st.write(res.raw)
+        st.subheader(f"Prediction result  = {res.json()}")
+
+    except requests.exceptions.RequestException as e:
+        st.error(f"HTTP Request failed: {e })")
+    except ValueError as e:
+        st.error(f"Failed to parse JSON response: {e}")
