@@ -3,7 +3,7 @@ import requests
 import json
 
 # عرض الصورة والعنوان
-st.image("")
+st.image("image.webp")
 st.title('Forecasting Player Financial Value')
 
 # link for API
