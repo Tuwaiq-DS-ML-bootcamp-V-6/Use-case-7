@@ -104,9 +104,13 @@ st.markdown("---")
 
 st.title("Data Distribution 🐧")
 st.write(px.scatter_3d(pca_df.head(500), x="PCA1", y="PCA2", z="PCA3", color="kmeans"))
-st.markdown("""
-            I hope you likey likey the PCA
-            
-            *best regards*
-            
-            """)
+st.write("""
+         *Above graph visualize the data distribution using PCA*
+         """)
+
+# st.markdown("""
+#             I hope you likey likey the PCA
+
+#             *best regards*
+
+#             """)
