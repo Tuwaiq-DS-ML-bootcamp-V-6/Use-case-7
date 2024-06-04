@@ -1,4 +1,2 @@
-# Use case 7 (Lab)
-### For Tuesday lab you are required to apply the following:
- - Ridge & Lasso regularization
- - Apply gridSearch
+#streamlit app link 
+https://usecase7.streamlit.app
