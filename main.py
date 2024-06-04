@@ -6,11 +6,9 @@ import os
 
 app = FastAPI()
 
-# تحديد المسارات المطلقة للملفات
 model_path = os.path.join(os.path.dirname(__file__), 'ML-Kmeans.joblib')
 scaler_path = os.path.join(os.path.dirname(__file__), 'Models', 'scaler.joblib')
 
-# تحميل النموذج والمقياس
 try:
     model = joblib.load(model_path)
     scaler = joblib.load(scaler_path)
